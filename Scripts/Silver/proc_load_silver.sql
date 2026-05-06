@@ -210,6 +210,11 @@ BEGIN
         -- ============================================================
         -- REGISTERS
         -- ============================================================
+        SET @table_name = 'silver.registers';
+        SET @start_time = GETDATE();
+        PRINT '>> Loading: ' + @table_name;
+        TRUNCATE TABLE silver.registers;
+
         INSERT INTO silver.registers (Register_ID, Store_ID, Register_Number)
         SELECT
             Register_ID,
@@ -222,6 +227,11 @@ BEGIN
             WHERE Register_ID IS NOT NULL
         ) deduped
         WHERE rn = 1;
+
+        SET @rows = @@ROWCOUNT; SET @end_time = GETDATE();
+        PRINT '>> Rows: ' + CAST(@rows AS NVARCHAR) + ' | Duration: ' + CAST(DATEDIFF(SECOND,@start_time,@end_time) AS NVARCHAR) + 's';
+        INSERT INTO silver.load_log VALUES (@proc_name,@table_name,@start_time,@end_time,DATEDIFF(SECOND,@start_time,@end_time),@rows,'SUCCESS',NULL);
+
         -- ============================================================
         -- PRODUCTS  (enriched with Brand_Name + Department_Name)
         -- ============================================================
@@ -453,6 +463,11 @@ BEGIN
         -- ============================================================
         -- ONLINE_ORDERS
         -- ============================================================
+        SET @table_name = 'silver.online_orders';
+        SET @start_time = GETDATE();
+        PRINT '>> Loading: ' + @table_name;
+        TRUNCATE TABLE silver.online_orders;
+
         INSERT INTO silver.online_orders
         (Order_ID, Customer_ID, Warehouse_ID, Order_Time, Order_Date, Order_Status, Order_Total)
         SELECT
@@ -478,6 +493,11 @@ BEGIN
         ) deduped
         WHERE rn = 1
           AND TRY_CAST(Order_Time AS DATETIME) IS NOT NULL;
+
+        SET @rows = @@ROWCOUNT; SET @end_time = GETDATE();
+        PRINT '>> Rows: ' + CAST(@rows AS NVARCHAR) + ' | Duration: ' + CAST(DATEDIFF(SECOND,@start_time,@end_time) AS NVARCHAR) + 's';
+        INSERT INTO silver.load_log VALUES (@proc_name,@table_name,@start_time,@end_time,DATEDIFF(SECOND,@start_time,@end_time),@rows,'SUCCESS',NULL);
+
         -- ============================================================
         -- ONLINE_ORDER_ITEMS
         -- ============================================================

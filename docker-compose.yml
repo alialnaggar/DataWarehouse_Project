@@ -1,0 +1,17 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    platform: linux/amd64
+    container_name: datawarehouse-sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "${MSSQL_SA_PASSWORD:-BIntP_Strong_Passw0rd!}"
+      MSSQL_PID: "Developer"
+    ports:
+      - "14333:1433"
+    volumes:
+      - ./Datasets:/var/opt/mssql/datasets:ro
+      - sqlserver-data:/var/opt/mssql
+
+volumes:
+  sqlserver-data:
