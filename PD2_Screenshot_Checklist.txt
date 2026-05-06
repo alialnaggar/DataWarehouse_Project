@@ -1,0 +1,14 @@
+Required PD2 screenshots to capture in the SQL Server VM:
+
+1. Gold schema / database diagram
+   Show gold.dim_date, gold.dim_customer, gold.dim_product, gold.dim_promotion,
+   gold.dim_store, gold.dim_employee, gold.dim_warehouse, gold.fact_store_sales,
+   and gold.fact_online_sales with primary-key and foreign-key relationships.
+
+2. PD2 audit Results tab
+   Run Scripts\PD2-SubmissionScript-Final.sql against the live DataWarehouse
+   database and screenshot the Results tab output.
+
+3. PD2 audit Messages tab
+   Screenshot the Messages tab, including the anti-plagiarism token generated
+   by the official audit script.
