@@ -1,0 +1,57 @@
+Changed database context to 'DataWarehouse'.
+table_name             row_count  
+---------------------- -----------
+gold.dim_date                  731
+gold.dim_customer             4000
+gold.dim_product               600
+gold.dim_promotion             121
+gold.dim_store                  64
+gold.dim_register              218
+gold.dim_employee              800
+gold.dim_warehouse               8
+gold.fact_store_sales        14612
+gold.fact_online_sales        7001
+
+(10 rows affected)
+fact_name    silver_source_rows gold_fact_rows
+------------ ------------------ --------------
+Store Sales               14612          14612
+Online Sales               7001           7001
+
+(2 rows affected)
+table_name             duplicate_count
+---------------------- ---------------
+gold.fact_store_sales                0
+gold.fact_online_sales               0
+
+(2 rows affected)
+relationship_name                  orphan_count
+---------------------------------- ------------
+fact_store_sales -> dim_date                  0
+fact_store_sales -> dim_customer              0
+fact_store_sales -> dim_product               0
+fact_store_sales -> dim_store                 0
+fact_store_sales -> dim_register              0
+fact_store_sales -> dim_employee              0
+fact_store_sales -> dim_promotion             0
+fact_online_sales -> dim_date                 0
+fact_online_sales -> dim_customer             0
+fact_online_sales -> dim_product              0
+fact_online_sales -> dim_warehouse            0
+fact_online_sales -> dim_promotion            0
+
+(12 rows affected)
+log_table     table_name                                                                                                                                                                                               rows_inserted status               error_message                                                                                                                                                                                                                                                   
+------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------------- -------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+gold.load_log gold.dim_date                                                                                                                                                                                                      731 SUCCESS              NULL                                                                                                                                                                                                                                                            
+gold.load_log gold.dim_customer                                                                                                                                                                                                 4000 SUCCESS              NULL                                                                                                                                                                                                                                                            
+gold.load_log gold.dim_product                                                                                                                                                                                                   600 SUCCESS              NULL                                                                                                                                                                                                                                                            
+gold.load_log gold.dim_promotion                                                                                                                                                                                                 121 SUCCESS              NULL                                                                                                                                                                                                                                                            
+gold.load_log gold.dim_store                                                                                                                                                                                                      64 SUCCESS              NULL                                                                                                                                                                                                                                                            
+gold.load_log gold.dim_register                                                                                                                                                                                                  218 SUCCESS              NULL                                                                                                                                                                                                                                                            
+gold.load_log gold.dim_employee                                                                                                                                                                                                  800 SUCCESS              NULL                                                                                                                                                                                                                                                            
+gold.load_log gold.dim_warehouse                                                                                                                                                                                                   8 SUCCESS              NULL                                                                                                                                                                                                                                                            
+gold.load_log gold.fact_store_sales                                                                                                                                                                                            14612 SUCCESS              NULL                                                                                                                                                                                                                                                            
+gold.load_log gold.fact_online_sales                                                                                                                                                                                            7001 SUCCESS              NULL                                                                                                                                                                                                                                                            
+
+(10 rows affected)

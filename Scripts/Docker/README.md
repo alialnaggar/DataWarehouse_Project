@@ -23,3 +23,11 @@ Run from the repository root:
 ```
 
 The script starts SQL Server, creates the database, loads Bronze and Silver, then runs the PD1 submission audit script.
+
+For Gold layer verification, run:
+
+```bash
+./tools/run_pd2_docker.sh
+```
+
+That script loads Bronze, Silver, and Gold, then runs `Scripts/Gold/validate_gold.sql`.
