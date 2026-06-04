@@ -1,4 +1,3 @@
-https://docs.google.com/forms/d/e/1FAIpQLSf-9UFBxh9yyNGYrRIxWXcvamFsOE_pgy1IfpVWAIWnVfqzxw/viewform
 # Retail Data Warehouse — Business Intelligence Project
 
 **Course:** Business Intelligence and Data Analytics (BINF 602)
